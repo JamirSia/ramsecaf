@@ -2,19 +2,11 @@
 <html>
 
 <head>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
-
 
   <!-- Basic -->
   <meta charset="utf-8" />
@@ -25,41 +17,40 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <link rel="shortcut icon" href="images/favicon.png" type="">
+  <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" type="">
 
   <title> Rams E-Caf </title>
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}" />
   <!-- nice select  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
     integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
     crossorigin="anonymous" />
   <!-- font awesome style -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" />
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="{{asset('css/style.css')}}" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
-
+  <link href="{{asset('css/responsive.css')}}" rel="stylesheet" />
 </head>
 
 <body>
-
-  <div class="hero_area">
+@include('sweetalert::alert')
+    <div class="hero_area">
     <div class="bg-box">
-      <img src="images/ramsbg.jpg" alt="">
-    </div>
-    <!-- header section -->
-    <header class="header_section">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg custom_nav-container">
-          <img src="images/ramslogo.png">
-          <a class="navbar-brand" href="index.html">
-            <span>
-              <p>Rams E-Caf</p>
-            </span>
-          </a>
+    <img src="{{asset('images/ramsbgprofile.jpg')}}" alt="">
+  </div>
+        <!-- header section -->
+        <header class="header_section">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg custom_nav-container">
+                <img src="{{asset('images/ramslogo.png')}}">
+                <a class="navbar-brand" href="/home">
+                        <span>
+                            <p>Rams E-Caf</p>
+                        </span>
+                    </a>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +60,7 @@
             <ul class="navbar-nav  mx-auto ">
             </ul>
             <div class="user_option">
-              <a href="profile.html" class="user_link">
+              <a href="/profile" class="user_link">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 Profile
               </a>
@@ -98,17 +89,18 @@
                   <div class="">
 
                     <p>Please provide your honest feedback for the food stall you ordered from.</p>
-                    <form>
+                    <form novalidate class="needs-validation" method="post" enctype="multipart/form-data" action="{{url('feedback')}}">
+				            @csrf
+                      <input type="hidden" value="{{$cartid}}" name="cart_id">
+                      <input type="hidden" value="{{$user_id}}" name="user_id">
                       <div class="mb-3">
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <textarea class="form-control" name="comment_1" id="exampleFormControlTextarea1" rows="3" required></textarea>
                       </div>
                       <p>Please provide your honest feedback for the Rams E-Caf WebApp.</p>
                       <div class="mb-3">
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <textarea class="form-control" name="comment_2" id="exampleFormControlTextarea1" rows="3" required></textarea>
                       </div>
-                      <a href="#addtocart" data-bs-toggle="modal" data-bs-target="#addtocart" tabindex="-1">
                         <button type="submit" class="btn btn-warning">Submit Feedback</button>
-                      </a>
                     </form>
                   </div>
                 </div>
@@ -135,7 +127,25 @@
             </div>
           </div>
 
+          <script>// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
 
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()</script>
           <!-- jQery -->
           <script src="js/jquery-3.4.1.min.js"></script>
           <!-- popper js -->

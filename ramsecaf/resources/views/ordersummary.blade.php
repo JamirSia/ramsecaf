@@ -61,7 +61,7 @@
                         <ul class="navbar-nav  mx-auto ">
                         </ul>
                         <div class="user_option">
-                            <a href="profile.html" class="user_link">
+                            <a href="/profile" class="user_link">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 Profile
                             </a>
@@ -141,15 +141,14 @@
                             </div>
                         </div>
 
-                        <div class="card mb-4">
+                        <!-- <div class="card mb-4">
                             <div class="card-body mx-auto">
                                 <a href="#addtocart" data-bs-toggle="modal" data-bs-target="#addtocart" tabindex="-1">
                                     <button type="button" class="btn btn-warning">Order
                                         Claimed</button>
                                 </a>
                             </div>
-                        </div>
-
+                        </div> -->
                     </div>
                 </div>
 
@@ -163,14 +162,14 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                Thankyou for using Rams E-Caf! Would you mind sharing your feedbacks with us?
+                                Thankyou for using Rams E-Caf! Would you mind sharing your feedback with us?
                             </div>
                             <div class="modal-footer">
-                                <a href="feedback.html">
+                            <a href="/confirm-order/{{$cart->id}}">
                                     <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Sure!</button>
                                 </a>
-                                <a href="index.html">
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No ☹</button>
+                                <a href="/confirm-orders/{{$cart->id}}">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Later</button>
                                 </a>
                             </div>
                         </div>

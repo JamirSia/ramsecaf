@@ -42,7 +42,7 @@
 </head>
 
 <body>
-
+@include('sweetalert::alert')
   <div class="hero_area">
     <div class="bg-box">
       <img src="images/ramsbg.jpg" alt="">
@@ -83,6 +83,7 @@
     <section class="slider_section ">
       <div id="customCarousel1" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
+          @if($vendor [0]->isactive==1)
           <div class="carousel-item active">
             <div class="container ">
               <div class="row">
@@ -101,16 +102,18 @@
               </div>
             </div>
           </div>
+          @endif
+          @if($vendor [1]->isactive==1)
           <div class="carousel-item ">
             <div class="container ">
               <div class="row">
                 <div class="col-md-7 col-lg-6 ">
                   <div class="detail-box">
                     <h1>
-                      La Mudra's Corner
+                    Red Brew
                     </h1>
                     <div class="btn-box">
-                      <a href="menu1.html" class="btn1">
+                      <a href="/redbrew" class="btn1">
                         Order Now
                       </a>
                     </div>
@@ -119,16 +122,18 @@
               </div>
             </div>
           </div>
+          @endif
+          @if($vendor [2]->isactive==1)
           <div class="carousel-item">
             <div class="container ">
               <div class="row">
                 <div class="col-md-7 col-lg-6 ">
                   <div class="detail-box">
                     <h1>
-                      Red Brew
+                    La Mudra's Corner
                     </h1>
                     <div class="btn-box">
-                      <a href="menu1.html" class="btn1">
+                      <a href="/lamudras" class="btn1">
                         Order Now
                       </a>
                     </div>
@@ -138,6 +143,7 @@
             </div>
           </div>
         </div>
+        @endif
         <div class="container">
           <ol class="carousel-indicators">
             <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
@@ -149,6 +155,11 @@
 
     </section>
     <!-- end slider section -->
+
+    <a href="#policy" data-bs-toggle="modal" data-bs-target="#policy" tabindex="-1">
+                            <button type="button" class="btn btn-warning">Log Out</button>
+    </a>
+
 
     <!-- Modal -->
     <div class="modal fade" id="addtocart" tabindex="-1" aria-labelledby="addtocartLabel" aria-hidden="true">
@@ -162,7 +173,7 @@
             Are you sure you want to log out?
           </div>
           <div class="modal-footer">
-            <a href="login.html">
+            <a href="{{url('/signout')}}">
               <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Yes</button>
             </a>
               <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>

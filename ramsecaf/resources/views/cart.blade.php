@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -86,8 +87,18 @@
           <div class="col-md-8">
             <div class="card mb-4">
               <div class="card-header py-3">
+              @if ($product[0]->store_name == 'Kitchen Express')
               <div class="d-flex justify-content-between align-items-center"><h5 class="mb-0 text-center"><strong>Kitchen Express</strong></h5>
               <a href="/kitchenexpress"type="button" class="btn btn-warning">Add another item</a></div>
+              @endif
+              @if ($product[0]->store_name == 'Red Brew')
+              <div class="d-flex justify-content-between align-items-center"><h5 class="mb-0 text-center"><strong>Red Brew</strong></h5>
+              <a href="/redbrew"type="button" class="btn btn-warning">Add another item</a></div>
+              @endif
+              @if ($product[0]->store_name == 'La Mudras Corner')
+              <div class="d-flex justify-content-between align-items-center"><h5 class="mb-0 text-center"><strong>La Mudras Corner</strong></h5>
+              <a href="/lamudras" type="button" class="btn btn-warning">Add another item</a></div>
+              @endif
               </div>
               <div class="card-body">
                 <!-- Start -->
@@ -142,17 +153,14 @@
                 <p style="display:none" type="hidden">{{$total = $total + $product->product_total}}</p>
                 @endforEach
 
-                
-                
-
                 <!-- End -->
               </div>
             </div>
 
             <div class="card mb-4">
               <div class="card-body">
-                <p><strong>Expected Pickup Time:</strong></p>
-                <p style="display:none" type="hidden">{{$new_time = date('H:i:s', strtotime('+30 minutes', strtotime(date('H:i:s'))))}}</p>
+                <p><strong>Pickup time starts:</strong></p>
+                <p style="display:none" type="hidden">{{$new_time = date('H:i:s', strtotime('+20 minutes', strtotime(date('H:i:s'))))}}</p>
                 <p class="mb-0">{{$new_time}}</p>
                 
               </div>

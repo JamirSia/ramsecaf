@@ -64,10 +64,10 @@
             <ul class="navbar-nav  mx-auto ">
             </ul>
             <div class="user_option">
-              <a href="/profile" class="user_link">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                Profile
-              </a>
+            <a href="/profile" class="user_link">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              Profile
+            </a>
               <a href="#logout" data-bs-toggle="modal" data-bs-target="#logout" tabindex="-1">
                 <button type="button" class="btn btn-warning">Log Out</button>
               </a>
@@ -89,7 +89,7 @@
             </div>
 
             <ul class="filters_menu">
-                <li class="active" data-filter="*">All</li>
+                <li class="active" data-filter=".all">All</li>
                 <li data-filter=".ricemeals">Rice Meals</li>
                 <li data-filter=".pasta">Pasta</li>
                 <li data-filter=".beverages">Beverages
@@ -98,10 +98,11 @@
             <div class="filters-content">
                 <div class="row grid">
                 @forEach($product as $product)
+                @if ($product->isactive == 1)
                     <div class="col-sm-6 col-lg-3 all {{$product->category}}">
                         <div class="box">
                             <div>
-                                    <div class="img-box">
+                                    <div class="img-box hover-zoom">
                                         <img src="{{url('images/'.$product->image)}}" alt="">
                                     </div>
                                 
@@ -117,11 +118,16 @@
                                         Stocks: {{$product->stocks}}
                                         </h6>
                                     </div>
-                                    <a href="/addtocart/{{$product->id}}/1" class="btn btn-warning float-end mb-3" type="submit"><i class="bi bi-plus-circle-fill"></i>  Add to Cart</a>
-                                </div>
+                                    @if ($product->stocks != 0)
+                                    <a href="/addtocart/{{$product->id}}" class="btn btn-warning float-end mb-3" type="submit"><i class="bi bi-plus-circle-fill"></i>  Add to Cart</a>
+                                    @else 
+                                    <button href="" class="btn btn-warning float-end mb-3" type="submit" disabled>Out of Stock</button>
+                                    @endif
+                                  </div>
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endforEach
                 </div>
             </div>
@@ -146,7 +152,7 @@
               Are you sure you want to log out?
             </div>
             <div class="modal-footer">
-              <a href="login.html">
+            <a href="{{url('/signout')}}">
                 <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Yes</button>
               </a>
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>

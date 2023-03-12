@@ -78,10 +78,10 @@
     <li class="list-group-item d-flex justify-content-between align-items-start">
       <div class="text-center">
         <h1>Pending Orders</h1>
-        <a href="profile.html">
+        <a href="/profile">
           <button type="button" class="btn btn-outline-warning active">Current Orders</button>
         </a>
-        <a href="orderhistory.html">
+        <a href="/complete">
           <button type="button" class="btn btn-outline-success">Completed Orders</button>
         </a>
       </div>
@@ -120,7 +120,7 @@
           Are you sure you want to log out?
         </div>
         <div class="modal-footer">
-          <a href="login.html">
+        <a href="{{url('/signout')}}">
             <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Yes</button>
           </a>
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>

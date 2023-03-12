@@ -30,19 +30,71 @@
 					<input type="password" name="password" id="password" class="form-control form-control-lg" required/>
 					<label class="form-label" for="password">Password</label>
 				  </div>
-	  
+	  				
 				  <!-- Checkbox -->
 				  <!-- <div class="form-check d-flex justify-content-start mb-4">
 					<input class="form-check-input" type="checkbox" value="" id="form1Example3" />
 					<label class="form-check-label" for="form1Example3">  Remember password </label>
 				  </div> -->
-				  <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+				  <a href="#policy" data-bs-toggle="modal" data-bs-target="#policy" class="btn btn-primary btn-lg btn-block">Login</a>
+				  <div class="modal fade" id="policy" tabindex="-1" aria-labelledby="policyLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-4" id="exampleModalLabel"> Data Privacy Notice: </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+
+          <div class="modal-body fs-6">
+			<p>APC collects and maintains personal data as part of its records management process include other purpose, if any in accordance with Republic Act 10173, or the Data Privacy Act (DPA) of 2012.</p>
+           <p>For details, please refer to APC Data Privacy Policy: <a href="https://www.apc.edu.ph/privacy-policy/" target="_blank">https://www.apc.edu.ph/privacy-policy/</a></p>
+          </div>
+
+
+			<div class="input-group ">
+			<div class="input-group-text">
+			<input  type="checkbox" onclick="enablebutton(this)" class="input-group-text" id="inputGroup-sizing-sm">	
+			</div>
+			<input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="I, comply to the data privacy notice of Asia Pacific College.">
+			</div>
+
+			
+			
+
+          <div class="modal-footer">
+            <a href="{{url('/signout')}}">
+              <button type="submit" class="btn btn-warning " id="button" data-bs-dismiss="modal" disabled>Okay</button>
+            </a>
+			<script>
+			function enablebutton(checkbox){
+				if(checkbox.checked){
+					document.getElementById("button").disabled=false;
+				}
+				else{
+					document.getElementById("button").disabled=true;
+				}
+			}
+			</script>
+          </div>
+
+		  
+
+
+        </div>
+      </div>
+    </div>
 				</div>
 			  </div>
 			</div>
 		  </div>
 		</div>
 	  </section>
+	  
+	</form>
+
+
+
 <script> 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {

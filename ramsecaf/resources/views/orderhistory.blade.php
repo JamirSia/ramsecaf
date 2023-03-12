@@ -33,7 +33,6 @@
 
 <body>
   
-    
         <div class="bg-box">
           <img src="images/ramsbgprofile.jpg" alt="">
         </div>
@@ -42,7 +41,7 @@
     <div class="container">
       <nav class="navbar navbar-expand-lg custom_nav-container">
         <img src="images/ramslogo.png">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="/home">
           <span>
             <p>Rams E-Caf</p>
           </span>
@@ -55,7 +54,7 @@
           <ul class="navbar-nav  mx-auto ">
           </ul>
           <div class="user_option">
-            <a href="profile.html" class="user_link">
+            <a href="/profile" class="user_link">
               <i class="fa fa-user" aria-hidden="true"></i>
               Profile
             </a>
@@ -69,46 +68,49 @@
   </header>
   <!-- end header section -->
 
-    <ol class="list-group list-group m-5">
-
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="text-center">
-          <h1>Completed Orders</h1>
-        <a href="profile.html">
-          <button type="button" class="btn btn-outline-warning">Current Orders</button>
+  <ol class="list-group list-group m-5">
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="text-center">
+        <h1>Completed Orders</h1>
+        <a href="/profile">
+          <button type="button" class="btn btn-outline-warning ">Current Orders</button>
         </a>
-        <a href="orderhistory.html"> 
+        <a href="/complete">
           <button type="button" class="btn btn-outline-success active">Completed Orders</button>
         </a>
-        </div>
-      </li>
+      </div>
+    </li>
+    @forEach($cart as $cart)
+    <a href="/receipt/{{$cart->id}}" style="color:black">
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2">
+        
+        <h5 class="" class="row"><strong class="h3 fw-bold">{{$cart->store}} <span class="badge rounded-pill bg-success"> Order # {{$cart->id}}</span></strong></h5>
 
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold" class="row">Kitchen Express</div>
-            <div>1 pc Burger Steak</div>
-            January 8 2023, 1:40 pm
-            
-          </div>
-          <span class="badge bg-success rounded-pill">98</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">La Mudra's Corner</div>
-            <div>Cheese Sticks</div>
-            January 8 2023, 1:40 pm
-          </div>
-          <span class="badge bg-success rounded-pill">18</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">Red Brew</div>
-            <div>Ham and Egg Sandwich</div>
-            January 8 2023, 1:40 pm
-          </div>
-          <span class="badge bg-success rounded-pill">46</span>
-        </li>
-      </ol>
+@forEach($product as $items)
+
+@if($items->cart_id == $cart->id)
+
+ <h6 class="m-0 mx-3">{{$items->product_quantity."x ". $items->productname}}</h6>
+
+@endif
+
+@endforEach
+  
+     
+      </div>
+      
+      @if(!$feedback->contains('cart_id',$cart->id))
+      <a href="/feedbackview/{{$cart->id}}" class="btn btn-warning mb-3 mx-2" type="submit">Provide Feedback</a>   
+      @endif 
+      
+    </li>
+    
+    </a>
+    
+    @endforEach
+  </ol>
+
 
       <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="logout" aria-hidden="true">
         <div class="modal-dialog">
@@ -121,7 +123,7 @@
               Are you sure you want to log out?
             </div>
             <div class="modal-footer">
-              <a href="login.html">
+            <a href="{{url('/signout')}}">
                 <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Yes</button>
               </a>
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
